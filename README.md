@@ -16,7 +16,7 @@ Para poder iniciar el Front-end del proyecto, realizado en Angular, podríamos a
 
 - Cuarto Paso: Si todo ha salido bien, deberíamos ver en consola un mensaje como el siguiente: 
 
-
+[![](https://i.imgur.com/Ca3rTDW.png)]()
 
 - Último paso, Abrir el puerto correspondiente : Normalmente, se abriría en nuestro navegador predeterminado el proyecto, sin embargo, en caso contrario, debemos dirigirnos a nuestro navegador de confianza, e ingresar 'localhost:4200', lo que nos permitirá ver el proyecto en ejecución, como se muestra en la siguiente imagen: 
 
