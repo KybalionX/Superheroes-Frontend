@@ -1,0 +1,58 @@
+<div *ngIf="superHeroeNotFound == true; then errorBlock else formBlock"></div>
+
+<ng-template #errorBlock>
+    <div style="display: flex; justify-content: center;">
+        <ErrorComponent mensajeError="Ha ocurrido un error al intentar obtener los datos"></ErrorComponent>
+    </div>
+</ng-template>
+
+<ng-template #formBlock>
+    <div *ngIf="loading == false else cargandoBlock">
+        <div class="superheroesEditContainer">
+            <h4>Editar Superheroe : {{superheroe.nombre}} ✏️</h4>
+            <div class="mb-3">
+                <label class="form-label">Nombre</label>
+                <input type="text" [(ngModel)]="superheroe.nombre" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Fuerza</label>
+                <input #inputNumber type="number" [(ngModel)]="superheroe.fuerza" class="form-control" min="0" max="10">
+                <div class="form-text">Debe estar en un rango de 1-10</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Inteligencia</label>
+                <input #inputNumber type="number" [(ngModel)]="superheroe.inteligencia" class="form-control" min="0"
+                    max="10">
+                <div class="form-text">Debe estar en un rango de 1-10</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Velocidad</label>
+                <input #inputNumber type="number" [(ngModel)]="superheroe.velocidad" class="form-control" min="0"
+                    max="10">
+                <div class="form-text">Debe estar en un rango de 1-10</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Valentía</label>
+                <input #inputNumber type="number" [(ngModel)]="superheroe.valentia" class="form-control" min="0"
+                    max="10">
+                <div class="form-text">Debe estar en un rango de 1-10</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Habilidad</label>
+                <input disabled type="text" value={{habilidad}} class="form-control">
+                <div class="form-text">Es la suma de Fuerza + Inteligencia + Velocidad + Valentía</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Grupo</label>
+                <select class="form-select" [(ngModel)]="superheroe.grupo!.id" aria-label="Default select example">
+                    <option value="0">Seleccionar grupo</option>
+                    <option *ngFor="let grupo of grupos; let i = index" value={{i+1}}>{{grupo.nombre}}</option>
+                </select>
+            </div>
+            <button (click)="updateSuperheroe()" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+    </div>
+    <ng-template #cargandoBlock>
+        <LoadingComponent mensajeCarga="Cargando datos para llenar el formulario..."></LoadingComponent>
+    </ng-template>
+</ng-template>

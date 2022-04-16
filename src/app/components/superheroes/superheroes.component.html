@@ -1,0 +1,45 @@
+<div *ngIf="error == true; then errorBlock else superheroesBlock"></div>
+<ng-template #errorBlock>
+    <div style="display: flex; justify-content: center;">
+        <ErrorComponent mensajeError="Ocurrió un error al intentar obtener la lista de superheroes"></ErrorComponent>
+    </div>
+</ng-template>
+<ng-template #superheroesBlock >
+    <div #tableBlock *ngIf="superheroes.length > 0 else cargandoBlock" class="content">
+        <table style="text-align: center;" class="table table-dark table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Fuerza</th>
+                    <th scope="col">Inteligencia</th>
+                    <th scope="col">Velocidad</th>
+                    <th scope="col">Valentía</th>
+                    <th scope="col">Habilidad</th>
+                    <th scope="col">Grupo</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let s of superheroes">
+                    <th scope="row">{{s.id}}</th>
+                    <td>{{s.nombre}}</td>
+                    <td>{{s.fuerza}}</td>
+                    <td>{{s.inteligencia}}</td>
+                    <td>{{s.velocidad}}</td>
+                    <td>{{s.valentia}}</td>
+                    <td>{{s.habilidad}}</td>
+                    <td>{{s.grupo.nombre}}</td>
+                    <td class="trAcciones">
+                        <a type="button" routerLink="/superheroes/edit/{{s.id}}" class="btn btn-primary">Editar ✏️</a>
+                        <a type="button" (click)="deleteUser(s)" class="btn btn-danger">Eliminar 🗑️</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <a class="btn btn-success btnCrearSuperheroe" routerLink="/superheroes/create" routerLinkActive="active">Crear Superheroe 🦸‍♂️</a>
+    </div>
+    <ng-template #cargandoBlock>
+        <LoadingComponent mensajeCarga="Cargando Superheroes..."></LoadingComponent>
+    </ng-template>
+</ng-template>

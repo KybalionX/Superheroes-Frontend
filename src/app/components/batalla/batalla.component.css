@@ -1,0 +1,25 @@
+.container{
+    max-width: 100%;
+}
+
+.buttonContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.buttonContainer a{
+    width: 100%;
+}
+
+.content{
+    max-width: 1400px;
+    margin: auto;
+}
+
+.content .header{
+    text-align: center;
+}
+
+.tableDescalificados .tr{
+    background-color: red !important;
+}

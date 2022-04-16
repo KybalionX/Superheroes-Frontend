@@ -1,0 +1,15 @@
+.loadingContainer{
+    text-align: center;
+}
+
+.loadingContainer .spinner-border{
+    width: 6rem;
+    height: 6rem;
+    border: 0.45em solid currentColor;
+    border-right-color: transparent;
+}
+
+.loadingContainer span{
+    font-size: 32px;
+    font-weight: 600;
+}

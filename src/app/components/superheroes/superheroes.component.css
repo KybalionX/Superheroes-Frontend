@@ -1,0 +1,16 @@
+.trAcciones{
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.content{
+    max-width: 1200px;
+    margin: auto;
+}
+
+.btnCrearSuperheroe{
+    display: flex;
+    width: fit-content;
+    margin: auto;
+}

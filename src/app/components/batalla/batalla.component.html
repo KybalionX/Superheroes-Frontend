@@ -1,0 +1,134 @@
+<div style="display: flex; justify-content: center;" *ngIf="error == true; else equiposBlock">
+    <ErrorComponent mensajeError="Error al intentar cargar la batalla"></ErrorComponent>
+</div>
+
+<ng-template #equiposBlock>
+    <div class="content">
+        <div class="header">
+            <h3>💥👊 Batalla 👊💥</h3>
+            <p>❗️ Recuerda que el orden de los superheroes está definido de mayor habilidad a menor habilidad ❗️</p>
+
+            <div class="buttonContainer">
+                <a class="btn btn-success" routerLink="/batalla/resultados" routerLinkActive="active">Iniciar
+                    Batalla</a>
+            </div>
+        </div>
+
+        <br />
+
+        <div class="divider"></div>
+
+        <br />
+        <h3 style="text-align: center;">Información de la batalla: </h3>
+        <br />
+
+        <div class="container ">
+            <div class="row">
+                <div class="col">
+                    <h4 style="text-align: center;">🆚 Enfrentamientos 🆚</h4>
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-dark table-striped">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Habilidad</th>
+                                        <th></th>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Habilidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let enfrentamiento of enfrentamientos">
+                                        <td>{{enfrentamiento[0] ? enfrentamiento[0].id : 'SIN RIVAL'}}</td>
+                                        <td>{{enfrentamiento[0] ? enfrentamiento[0].nombre : 'SIN RIVAL'}}</td>
+                                        <td>{{enfrentamiento[0] ? enfrentamiento[0].habilidad : 'SIN RIVAL'}}</td>
+                                        <td><b>🆚</b></td>
+                                        <td>{{enfrentamiento[1] ? enfrentamiento[1].id : 'SIN RIVAL'}}</td>
+                                        <td>{{enfrentamiento[1] ? enfrentamiento[1].nombre : 'SIN RIVAL'}}</td>
+                                        <td>{{enfrentamiento[1] ? enfrentamiento[1].habilidad : 'SIN RIVAL'}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="descalificados.length > 0" class="col">
+                    <h4 style="text-align: center;">Descalificados (Sin rival) ⬇️</h4>
+                    <div class="row">
+                        <div class="col">
+                            <table class="table table-dark table-striped tableDescalificados">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Id</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Habilidad</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let descalificado of descalificados; index as i;">
+                                        <td>{{descalificado[0].id}}</td>
+                                        <td>{{descalificado[0].nombre}}</td>
+                                        <td>{{descalificado[0].habilidad}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+        <br />
+
+        <div class="container ">
+            <h2 style="text-align: center;">Equipos</h2>
+            <br/>
+            <div class="row">
+                <div class="col">
+                    <h4>1️⃣ Equipo Marvel</h4>
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Habilidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let superheroe of grupos['equipoMarvel']">
+                                <th scope="row">{{superheroe.id}}</th>
+                                <td>{{superheroe.nombre}}</td>
+                                <td>{{superheroe.habilidad}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <h4>2️⃣ Equipo DC</h4>
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Habilidad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let superheroe of grupos['equipoDC']">
+                                <th scope="row">{{superheroe.id}}</th>
+                                <td>{{superheroe.nombre}}</td>
+                                <td>{{superheroe.habilidad}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</ng-template>

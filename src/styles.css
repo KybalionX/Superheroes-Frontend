@@ -1,0 +1,8 @@
+body{
+    background-color: rgb(43 49 54);   
+    color: white;
+}/* You can add global styles to this file, and also import other style files */
+
+.divider{
+    border: solid 1px white;
+}

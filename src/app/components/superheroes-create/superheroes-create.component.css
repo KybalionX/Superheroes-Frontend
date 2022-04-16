@@ -1,0 +1,8 @@
+.superheroesCreateContainer{
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.418);
+    max-width: 1200px;
+    margin: auto;
+    background: #364048;
+}

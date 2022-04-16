@@ -1,0 +1,143 @@
+<div class="content">
+    <h1>✨Hola!✨</h1>
+
+    <p>Procederé a explicarte brevemente sobre el desarrollo del Front-end</p>
+
+    <div class="divider"></div>
+
+    <section>
+        <h2>Rutas ⤴️</h2>
+        <p>Estas son las rutas que son accesibles desde la aplicación:</p>
+        <ul>
+            <li>
+                <a routerLink="/superheroes"><b>/superheroes</b></a> : Tienes una lista de los superheroes que existen
+                en la
+                base de datos, además de una columna de acciones,
+                donde podrás <span class="badge bg-primary">Editar</span> y <span
+                    class="badge bg-danger">Eliminar</span> al
+                superheroe correspondiente
+            </li>
+            <li>
+                <a routerLink="/superheroes/create"><b>/superheroes/create</b></a> : Encontrarás un formulario para
+                poder
+                crear superheroes, recuerda asignarles un nombre y un grupo!
+            </li>
+            <li>
+                <a routerLink="/superheroes/edit/1"><b>/superheroes/edit/:id</b></a> : Encontrarás un formulario para
+                poder
+                editar al superheroe que llega por parametro (:id)
+            </li>
+            <li>
+                <a routerLink="/batalla"><b>/batalla</b></a> : Tendrás una vista donde podrás ver algunas secciones
+                como:
+                <ul>
+                    <li><b>Equipos:</b> Tablas donde encontrarás a los superheroes, distribuidos por equipos, ordenados
+                        de
+                        mayor a menor puntaje de habilidad</li>
+                </ul>
+                <ul>
+                    <li><b>Batalla:</b> Una tabla donde visualizarás los enfrentamientos que se realizarán y otra con
+                        los
+                        superheroes descalificados por no tener rival para enfrentar </li>
+                </ul>
+            </li>
+            <li>
+                <a routerLink="/batalla/resultados"><b>/batalla/resultados</b></a> : Podrás ver los resultados de la
+                batalla
+            </li>
+        </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+        <h2>Componentes Creados y Usados ⚛️</h2>
+        <ul>
+            <li>
+                <b>batalla</b> : Contiene la vista para la ruta '/batalla'
+            </li>
+            <li>
+                <b>batalla-resultados</b> : Contiene la vista para la ruta '/batalla/resultados'
+            </li>
+            <li>
+                <b>error</b> : Componente que sale en caso de error en algunas de las vistas, puedes hacerlo aparecer si
+                intentar ir a la ruta <a routerLink="/superheroes"><b>/superheroes</b></a> sin iniciar el servidor del
+                backend
+            </li>
+            <li>
+                <b>footer</b> : Componente que contiene un footer, puedes verlo, por ejemplo, al final de esta página!
+            </li>
+            <li>
+                <b>index</b> : Componente que contiene esta misma vista... Es esto Inception?
+            </li>
+            <li>
+                <b>loading</b> : Componente que contiene un spinner + un texto que se puede pasar como property que se
+                muestra mientras carga la respuesta de la api
+            </li>
+            <li>
+                <b>navigation-bar</b> : Componente que contiene la barra de navegación que puedes ver en la parte
+                superior de todas las vistas
+            </li>
+            <li>
+                <b>superheroes</b> : Contiene la vista para la ruta <a routerLink="/superheroes"><b>/superheroes</b></a>
+            </li>
+            <li>
+                <b>superheroes-create</b> : Contiene la vista para la ruta <a
+                    routerLink="/superheroes/create"><b>/superheroes/create</b></a>
+            </li>
+            <li>
+                <b>superheroes-edit</b> : Contiene la vista para la ruta <a
+                    routerLink="/superheroes/edit/1"><b>/superheroes/edit/:id</b></a>
+            </li>
+        </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+        <h2>Clases de Utilidad 🔧</h2>
+        <ul>
+            <li>
+                <b>SuperheroeModel.ts</b> : He decidido que, para poder recibir y enviar los usuarios creados y/o
+                editados, lo mejor era crear una <b>Interfaz</b>, la puedes encontrar en:
+                <b>/src/app/models/SuperheroeModel.ts</b>
+            </li>
+            <li>
+                <b>api.service.ts</b> : Era una mala estrategia poner cada una de las peticiones en cada uno de los
+                componentes. Para evitar ese problema y redundancia de código, he decidido crear un <b>Inyectable</b> de
+                angular que contiene todo el servicio de conexión a la api con todos sus métodos, esto, nos ayudará a
+                reducir código en los componentes, y a darle una mayor escalabilidad al código!. Puedes encontrar este
+                servicio en: <b>/src/app/services/api.service.ts</b>
+            </li>
+        </ul>
+    </section>
+
+    <div class="divider"></div>
+
+    <section>
+        <h2>Librerías externas 🧰</h2>
+        <p>Como te puedes dar cuenta, en esta aplicación estamos usando algunas librerías, como, por ejemplo, bootstrap.
+            He decidido listar las que he usado para acelerar el desarrollo</p>
+        <ul>
+            <li>
+                <a target="_blank" href="https://getbootstrap.com/">Bootstrap</a>, para poder darle un mejor estilo
+                visual a la aplicación
+            </li>
+            <li>
+                <a target="_blank" href="https://axios-http.com/docs/intro">Axios</a>, para poder manejar las peticiones
+                HTTP de una manera más fácil y cómoda
+            </li>
+            <li>
+                <a target="_blank" href="https://lodash.com/">Lodash</a>, para poder manejar estructuras de datos de una
+                manera más fácil
+            </li>
+            <li>
+                <a target="_blank" href="https://sweetalert2.github.io/">Sweetalert</a>, para poder mostrar alertas de
+                tipo modal y aumentar la interactividad con el usuario
+            </li>
+            <li>
+                <a target="_blank" href="https://emojipedia.org/">Emojipedia</a>, Son solo emojis que usé para agregar a la aplicación, le dan un poco más de vida, ¿no es así? 
+            </li>
+        </ul>
+    </section>
+</div>
