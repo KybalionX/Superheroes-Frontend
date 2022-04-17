@@ -26,14 +26,9 @@ export class BatallaComponent implements OnInit {
     }).catch(() => this.error = true);
 
     this.api.getEnfrentamientos().then((response) => {
-      console.log(response.data);
       this.enfrentamientos = _.filter(response.data, (e) => e.length == 2);
       this.descalificados = _.reject(response.data, (e) => e.length == 2);
     })
-  }
-
-  iniciarBatalla(){
-    console.log("Iniciar batalla");
   }
 
 }

@@ -13,6 +13,8 @@ export class BatallaResultadosComponent implements OnInit {
   perdedores: any = [];
   marcador: any = {};
   loading: boolean = true;
+  noBattle : boolean = false;
+  noBattleResponse : string = "";
 
   constructor(private api: ApiService) { }
 
@@ -22,6 +24,11 @@ export class BatallaResultadosComponent implements OnInit {
 
   getResultados() {
     this.api.getResultados().then((response) => {
+      if(response.data.noBattle){
+        this.noBattle = true;
+        this.noBattleResponse = response.data.noBattle[0];
+        return;
+      }
       let { ganadores, empates, perdedores, marcador } = response.data;
       this.ganadores = ganadores;
       this.empates = empates;

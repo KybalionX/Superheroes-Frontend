@@ -1,119 +1,125 @@
-<div *ngIf="loading else resultadoBlock">
-    <LoadingComponent mensajeCarga="Cargando resultados..."></LoadingComponent>
+<div *ngIf="noBattle else battleBlock" style="display: flex; justify-content: center;">
+    <ErrorComponent mensajeError={{noBattleResponse}}></ErrorComponent>
 </div>
 
-<ng-template #resultadoBlock>
-    <div class="content">
-        <h2 style="text-align: center;">🏁 Resultados de la batalla! 🏁</h2>
-        <div class="divider"></div>
-        <br />
+<ng-template #battleBlock>
+    <div *ngIf="loading else resultadoBlock">
+        <LoadingComponent mensajeCarga="Cargando resultados..."></LoadingComponent>
+    </div>
 
-        <div class="container containerMarcador">
-            <h3>MARCADOR FINAL</h3>
-            <div class="row">
-                <div [ngClass]="{'winner': marcador['MARVEL'] > marcador['DC COMICS'], 'draw' : marcador['MARVEL'] === marcador['DC COMICS']}"
-                    class="col colMarcadorMarvel">
-                    MARVEL : {{marcador['MARVEL']}}
-                </div>
-                <div [ngClass]="{'winner': marcador['DC COMICS'] > marcador['MARVEL'], 'draw' : marcador['MARVEL'] === marcador['DC COMICS']}"
-                    class="col colMarcadorDC">
-                    DC COMICS : {{marcador['DC COMICS']}}
+    <ng-template #resultadoBlock>
+        <div class="content">
+            <h2 style="text-align: center;">🏁 Resultados de la batalla! 🏁</h2>
+            <div class="divider"></div>
+            <br />
+
+            <div class="container containerMarcador">
+                <h3>MARCADOR FINAL</h3>
+                <div class="row">
+                    <div [ngClass]="{'winner': marcador['MARVEL'] > marcador['DC COMICS'], 'draw' : marcador['MARVEL'] === marcador['DC COMICS']}"
+                        class="col colMarcadorMarvel">
+                        MARVEL : {{marcador['MARVEL']}}
+                    </div>
+                    <div [ngClass]="{'winner': marcador['DC COMICS'] > marcador['MARVEL'], 'draw' : marcador['MARVEL'] === marcador['DC COMICS']}"
+                        class="col colMarcadorDC">
+                        DC COMICS : {{marcador['DC COMICS']}}
+                    </div>
                 </div>
             </div>
+
+            <br />
+
+            <div #tableBlock *ngIf="ganadores.length > 0">
+                <h4 style="text-align: center;">🏆 Ganadores! 🏆</h4>
+                <table style="text-align: center;" class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Fuerza</th>
+                            <th scope="col">Inteligencia</th>
+                            <th scope="col">Velocidad</th>
+                            <th scope="col">Valentía</th>
+                            <th scope="col">Habilidad</th>
+                            <th scope="col">Grupo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let ganador of ganadores">
+                            <th scope="row">{{ganador.id}}</th>
+                            <td>{{ganador.nombre}}</td>
+                            <td>{{ganador.fuerza}}</td>
+                            <td>{{ganador.inteligencia}}</td>
+                            <td>{{ganador.velocidad}}</td>
+                            <td>{{ganador.valentia}}</td>
+                            <td>{{ganador.habilidad}}</td>
+                            <td>{{ganador.grupo.nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br />
+
+            <div *ngIf="perdedores.length > 0">
+                <h4 style="text-align: center;">😢 Perdedores 😢</h4>
+                <table style="text-align: center;" class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Fuerza</th>
+                            <th scope="col">Inteligencia</th>
+                            <th scope="col">Velocidad</th>
+                            <th scope="col">Valentía</th>
+                            <th scope="col">Habilidad</th>
+                            <th scope="col">Grupo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let perdedor of perdedores">
+                            <th scope="row">{{perdedor.id}}</th>
+                            <td>{{perdedor.nombre}}</td>
+                            <td>{{perdedor.fuerza}}</td>
+                            <td>{{perdedor.inteligencia}}</td>
+                            <td>{{perdedor.velocidad}}</td>
+                            <td>{{perdedor.valentia}}</td>
+                            <td>{{perdedor.habilidad}}</td>
+                            <td>{{perdedor.grupo.nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <br />
+
+            <div *ngIf="empates.length > 0">
+                <h4 style="text-align: center;">🤝 Empates 🤝</h4>
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Habilidad</th>
+                            <th></th>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Habilidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let empate of empates">
+                            <td>{{empate[0] ? empate[0].id : 'SIN RIVAL'}}</td>
+                            <td>{{empate[0] ? empate[0].nombre : 'SIN RIVAL'}}</td>
+                            <td>{{empate[0] ? empate[0].habilidad : 'SIN RIVAL'}}</td>
+                            <td>🆚</td>
+                            <td>{{empate[1] ? empate[1].id : 'SIN RIVAL'}}</td>
+                            <td>{{empate[1] ? empate[1].nombre : 'SIN RIVAL'}}</td>
+                            <td>{{empate[1] ? empate[1].habilidad : 'SIN RIVAL'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        <br />
-
-        <div #tableBlock *ngIf="ganadores.length > 0">
-            <h4 style="text-align: center;">🏆 Ganadores! 🏆</h4>
-            <table style="text-align: center;" class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Fuerza</th>
-                        <th scope="col">Inteligencia</th>
-                        <th scope="col">Velocidad</th>
-                        <th scope="col">Valentía</th>
-                        <th scope="col">Habilidad</th>
-                        <th scope="col">Grupo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let ganador of ganadores">
-                        <th scope="row">{{ganador.id}}</th>
-                        <td>{{ganador.nombre}}</td>
-                        <td>{{ganador.fuerza}}</td>
-                        <td>{{ganador.inteligencia}}</td>
-                        <td>{{ganador.velocidad}}</td>
-                        <td>{{ganador.valentia}}</td>
-                        <td>{{ganador.habilidad}}</td>
-                        <td>{{ganador.grupo.nombre}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <br />
-
-        <div *ngIf="perdedores.length > 0">
-            <h4 style="text-align: center;">😢 Perdedores 😢</h4>
-            <table style="text-align: center;" class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Fuerza</th>
-                        <th scope="col">Inteligencia</th>
-                        <th scope="col">Velocidad</th>
-                        <th scope="col">Valentía</th>
-                        <th scope="col">Habilidad</th>
-                        <th scope="col">Grupo</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let perdedor of perdedores">
-                        <th scope="row">{{perdedor.id}}</th>
-                        <td>{{perdedor.nombre}}</td>
-                        <td>{{perdedor.fuerza}}</td>
-                        <td>{{perdedor.inteligencia}}</td>
-                        <td>{{perdedor.velocidad}}</td>
-                        <td>{{perdedor.valentia}}</td>
-                        <td>{{perdedor.habilidad}}</td>
-                        <td>{{perdedor.grupo.nombre}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <br />
-
-        <div *ngIf="empates.length > 0">
-            <h4 style="text-align: center;">🤝 Empates 🤝</h4>
-            <table class="table table-dark table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Habilidad</th>
-                        <th></th>
-                        <th scope="col">Id</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Habilidad</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let empate of empates">
-                        <td>{{empate[0] ? empate[0].id : 'SIN RIVAL'}}</td>
-                        <td>{{empate[0] ? empate[0].nombre : 'SIN RIVAL'}}</td>
-                        <td>{{empate[0] ? empate[0].habilidad : 'SIN RIVAL'}}</td>
-                        <td>🆚</td>
-                        <td>{{empate[1] ? empate[1].id : 'SIN RIVAL'}}</td>
-                        <td>{{empate[1] ? empate[1].nombre : 'SIN RIVAL'}}</td>
-                        <td>{{empate[1] ? empate[1].habilidad : 'SIN RIVAL'}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </ng-template>
 </ng-template>

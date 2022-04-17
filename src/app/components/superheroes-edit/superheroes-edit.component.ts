@@ -46,9 +46,7 @@ export class SuperheroesEditComponent implements OnInit {
   }
 
   loadInputListener() {
-    console.log(this.elements);
     this.elements.changes.subscribe(changes => changes.forEach((element : any) => {
-      console.log("wen");
       element.nativeElement.addEventListener('keydown', (e: any) => {
         e.preventDefault();
         alert("Recuerda usar solo las flechas del input!");
